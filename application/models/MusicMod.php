@@ -54,10 +54,11 @@ class MusicMod extends CI_Model {
         $this->upload->do_upload('MusicDirectorImage');
         $data =  $this->upload->data();
         $path1=$data['file_name'];
+	$target_file =base_url().$config['upload_path'].$path1;
         $data= array(
 	   
 	       "MUSICDIRECTOR_NAME"=>$this->input->post("MusicDirectorName"),
-	       "MUSICDIRECTOR_IMAGE"=>$path1
+	       "MUSICDIRECTOR_IMAGE"=>$target_file
 						 
 	);
 	$this->db->insert("musicdirector",$data);
@@ -77,12 +78,13 @@ class MusicMod extends CI_Model {
 	    $this->upload->do_upload('MusicDirectorImage');
 	    $data =  $this->upload->data();
 	    $path1=$data['file_name'];
+	    $target_file =base_url().$config['upload_path'].$path1;
 	}
 	
         $data= array(
 	   
 	       "MUSICDIRECTOR_NAME"=>$this->input->post("MusicDirectorName"),
-	       "MUSICDIRECTOR_IMAGE"=>$path1
+	       "MUSICDIRECTOR_IMAGE"=>$target_file
 						 
 	);
 	$this->db->where("ID","$id");
@@ -106,10 +108,11 @@ class MusicMod extends CI_Model {
         $this->upload->do_upload('SingerImage');
         $data =  $this->upload->data();
         $path1=$data['file_name'];
+	$target_file =base_url().$config['upload_path'].$path1;
         $data= array(
 	   
 	       "SINGER_NAME"=>$this->input->post("SingerName"),
-	       "SINGER_IMAGE"=>$path1
+	       "SINGER_IMAGE"=>$target_file
 						 
 	);
 	$this->db->insert("singer",$data);
@@ -129,12 +132,13 @@ class MusicMod extends CI_Model {
 	    $this->upload->do_upload('SingerImage');
 	    $data =  $this->upload->data();
 	    $path1=$data['file_name'];
+	    $target_file =base_url().$config['upload_path'].$path1;
 	}
 	
         $data= array(
 	   
 	       "SINGER_NAME"=>$this->input->post("SingerName"),
-	       "SINGER_IMAGE"=>$path1
+	       "SINGER_IMAGE"=>$target_file
 						 
 	);
 	$this->db->where("ID","$id");
@@ -163,10 +167,11 @@ class MusicMod extends CI_Model {
         $this->upload->do_upload('LyricistImage');
         $data =  $this->upload->data();
         $path1=$data['file_name'];
+	$target_file =base_url().$config['upload_path'].$path1;
         $data= array(
 	   
 	       "LYRICIST_NAME"=>$this->input->post("LyricistName"),
-	       "LYRICIST_IMAGE"=>$path1
+	       "LYRICIST_IMAGE"=>$target_file
 						 
 	);
 	$this->db->insert("lyricist",$data);
@@ -186,12 +191,13 @@ class MusicMod extends CI_Model {
 	    $this->upload->do_upload('LyricistImage');
 	    $data =  $this->upload->data();
 	    $path1=$data['file_name'];
+	    $target_file =base_url().$config['upload_path'].$path1;
 	}
 	
         $data= array(
 	   
 	       "LYRICIST_NAME"=>$this->input->post("LyricistName"),
-	       "LYRICIST_IMAGE"=>$path1
+	       "LYRICIST_IMAGE"=>$target_file
 						 
 	);
 	$this->db->where("ID","$id");
@@ -225,10 +231,11 @@ class MusicMod extends CI_Model {
         $this->upload->do_upload('ActorImage');
         $data =  $this->upload->data();
         $path1=$data['file_name'];
+	$target_file =base_url().$config['upload_path'].$path1;
         $data= array(
 	   
 	       "ACTOR_NAME"=>$this->input->post("ActorName"),
-	       "ACTOR_IMAGE"=>$path1
+	       "ACTOR_IMAGE"=>$target_file
 						 
 	);
 	$this->db->insert("actor",$data);
@@ -248,12 +255,13 @@ class MusicMod extends CI_Model {
 	    $this->upload->do_upload('ActorImage');
 	    $data =  $this->upload->data();
 	    $path1=$data['file_name'];
+	    $target_file =base_url().$config['upload_path'].$path1;
 	}
 	
         $data= array(
 	   
 	       "ACTOR_NAME"=>$this->input->post("ActorName"),
-	       "ACTOR_IMAGE"=>$path1
+	       "ACTOR_IMAGE"=>$target_file
 						 
 	);
 	$this->db->where("ID","$id");
@@ -282,14 +290,47 @@ class MusicMod extends CI_Model {
         $this->upload->do_upload('ActressImage');
         $data =  $this->upload->data();
         $path1=$data['file_name'];
+	$target_file =base_url().$config['upload_path'].$path1;
         $data= array(
 	   
 	       "ACTRESS_NAME"=>$this->input->post("ActressName"),
-	       "ACTRESS_IMAGE"=>$path1
+	       "ACTRESS_IMAGE"=>$target_file
 						 
 	);
 	$this->db->insert("actress",$data);
         redirect("MusicCtr/Actress_View");
+    }
+    function Actress_Edit($id)
+    {
+	if($_FILES['ActressImage']['name']=="")
+	{
+         $path1=$this->input->post('ActressImage');
+	}
+	else
+	{
+	    $config['upload_path'] ='application/uploads/';
+	    $config['allowed_types'] = 'gif|jpg|png';
+	    $this->load->library('upload', $config);
+	    $this->upload->do_upload('ActressImage');
+	    $data =  $this->upload->data();
+	    $path1=$data['file_name'];
+	    $target_file =base_url().$config['upload_path'].$path1;
+	}
+        $data= array(
+	   
+	       "ACTRESS_NAME"=>$this->input->post("ActressName"),
+	       "ACTRESS_IMAGE"=>$target_file
+						 
+	);
+	$this->db->where("ID","$id");
+	    return $this->db->update("actress",$data);
+    }
+    function getActress_Edit($id)
+    {
+    
+	$sql="SELECT * FROM actress WHERE ID = '$id'";
+	return $query = $this->db->query($sql)->result_array();
+	
     }
     function Actress_Delete($ID)
     {
@@ -309,14 +350,47 @@ class MusicMod extends CI_Model {
         $this->upload->do_upload('DirectorImage');
         $data =  $this->upload->data();
         $path1=$data['file_name'];
+	$target_file =base_url().$config['upload_path'].$path1;
         $data= array(
 	   
 	       "DIRECTOR_NAME"=>$this->input->post("DirectorName"),
-	       "DIRECTOR_IMAGE"=>$path1
+	       "DIRECTOR_IMAGE"=>$target_file
 						 
 	);
 	$this->db->insert("director",$data);
         redirect("MusicCtr/Director_View");
+    }
+    function Director_Edit($id)
+    {
+	if($_FILES['DirectorImage']['name']=="")
+	{
+         $path1=$this->input->post('DirectorImage');
+	}
+	else
+	{
+	    $config['upload_path'] ='application/uploads/';
+	    $config['allowed_types'] = 'gif|jpg|png';
+	    $this->load->library('upload', $config);
+	    $this->upload->do_upload('DirectorImage');
+	    $data =  $this->upload->data();
+	    $path1=$data['file_name'];
+	    $target_file =base_url().$config['upload_path'].$path1;
+	}
+	    $data= array(
+	       
+		   "DIRECTOR_NAME"=>$this->input->post("DirectorName"),
+		   "DIRECTOR_IMAGE"=>$target_file
+						     
+	    );
+	    $this->db->where("ID","$id");
+	    return $this->db->update("director",$data);
+    }
+    function getDirector_Edit($id)
+    {
+    
+	$sql="SELECT * FROM director WHERE ID = '$id'";
+	return $query = $this->db->query($sql)->result_array();
+	
     }
     function Director_Delete($ID)
     {
@@ -336,15 +410,49 @@ class MusicMod extends CI_Model {
         $this->upload->do_upload('ProductionImage');
         $data =  $this->upload->data();
         $path1=$data['file_name'];
+	$target_file =base_url().$config['upload_path'].$path1;
         $data= array(
 	   
 	       "PRODUCTION_NAME"=>$this->input->post("ProductionName"),
-	       "PRODUCTION_IMAGE"=>$path1
+	       "PRODUCTION_IMAGE"=>$target_file
 						 
 	);
 	$this->db->insert("production",$data);
         redirect("MusicCtr/Production_View");
     }
+    function Production_Edit($id)
+    {
+	if($_FILES['ProductionImage']['name']=="")
+	{
+         $path1=$this->input->post('ProductionImage');
+	}
+	else
+	{
+	    $config['upload_path'] ='application/uploads/';
+	    $config['allowed_types'] = 'gif|jpg|png';
+	    $this->load->library('upload', $config);
+	    $this->upload->do_upload('ProductionImage');
+	    $data =  $this->upload->data();
+	    $path1=$data['file_name'];
+	    $target_file =base_url().$config['upload_path'].$path1;
+	}
+        $data= array(
+	   
+	       "PRODUCTION_NAME"=>$this->input->post("ProductionName"),
+	       "PRODUCTION_IMAGE"=>$target_file
+						 
+	);
+	$this->db->where("ID","$id");
+	return $this->db->update("production",$data);
+    }
+    function getProduction_Edit($id)
+    {
+    
+	$sql="SELECT * FROM production WHERE ID = '$id'";
+	return $query = $this->db->query($sql)->result_array();
+	
+    }
+    
     function Production_Delete($ID)
     {
 	$this->db->where("ID",$ID);
@@ -358,19 +466,54 @@ class MusicMod extends CI_Model {
     function Album_Add()
     {
 	$config['upload_path'] ='application/uploads/';
-        $config['allowed_types'] = 'gif|jpg|png';
-        $this->load->library('upload', $config);
-        $this->upload->do_upload('AlbumImage');
-        $data =  $this->upload->data();
-        $path1=$data['file_name'];
+	$config['allowed_types'] = 'gif|jpg|png';
+	$this->load->library('upload', $config);
+	$this->upload->do_upload('AlbumImage');
+	$data =  $this->upload->data();
+	$path1=$data['file_name'];
+	$target_file =base_url().$config['upload_path'].$path1;
         $data= array(
 	   
 	       "ALBUM_NAME"=>$this->input->post("AlbumName"),
-	       "ALBUM_IMAGE"=>$path1
+	       "ALBUM_IMAGE"=>$target_file
 						 
 	);
 	$this->db->insert("album",$data);
         redirect("MusicCtr/Album_View");
+    }
+    function Album_Edit($id)
+    {
+	//print_r($_POST);
+	//exit;
+	if($_FILES['AlbumImage']['name']=="")
+	{
+         $path1=$this->input->post('AlbumImage');
+	}
+	else
+	{
+	    $config['upload_path'] ='application/uploads/';
+	    $config['allowed_types'] = 'gif|jpg|png';
+	    $this->load->library('upload', $config);
+	    $this->upload->do_upload('AlbumImage');
+	    $data =  $this->upload->data();
+	    $path1=$data['file_name'];
+	    $target_file =base_url().$config['upload_path'].$path1;
+	}
+        $data= array(
+	   
+	       "ALBUM_NAME"=>$this->input->post("AlbumName"),
+	       "ALBUM_IMAGE"=>$target_file
+						 
+	);
+	$this->db->where("ID","$id");
+	return $this->db->update("album",$data);
+    }
+    function getAlbum_Edit($id)
+    {
+    
+	$sql="SELECT * FROM album WHERE ID = '$id'";
+	return $query = $this->db->query($sql)->result_array();
+	
     }
     function Album_Delete($ID)
     {

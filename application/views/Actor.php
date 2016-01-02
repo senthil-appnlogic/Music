@@ -44,7 +44,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-12" id="gallery">
                                                     <div class="ImageView AdjustPadding" style="padding-bottom:20px;"  >
-                                                    <img src="<?php if($mode=="add"){echo site_url('/application/assets/img/no-image.png');}else{ echo site_url('application/uploads/'.$ActorEdit[0]['ACTOR_IMAGE']); }?>" class="col-md-12 previewimage gott2 img-responsive" id="dummy1" style="height: 185px; width: 200px;" >
+                                                    <img src="<?php if($mode=="add"){echo site_url('/application/assets/img/no-image.png');}else{ echo $ActorEdit[0]['ACTOR_IMAGE']; }?>" class="col-md-12 previewimage gott2 img-responsive" id="dummy1" style="height: 185px; width: 200px;" >
                                                     <input type="file" id="preview" name="ActorImage" value="<?php if($mode=="add"){} else {echo $ActorEdit[0]['ACTOR_IMAGE']; } ?>" onchange="attachmentss(this);" class="col-md-12">
                                                     <input type="hidden" name="getActorImage" value="<?php if($mode=="add"){}else{ echo $ActorEdit[0]['ACTOR_IMAGE']; }?>">
                                                     </div>

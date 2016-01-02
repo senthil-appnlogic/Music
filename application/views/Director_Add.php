@@ -23,7 +23,7 @@
 			    <h4 class="panel-title">Add Director</h4>
 			</div>
 			<div class="panel-body">
-			    <form action="<?php echo base_url('MusicCtr/Director_Add'); ?>" class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   
+			    <form <?php if($mode=="add") { ?> action="<?php echo site_url('MusicCtr/Director_Add/add');?>" <?php } else { ?> action="<?php echo site_url('MusicCtr/Director_Add/edit'.$directorEdit[0]['ID']);?>" <?php } ?> class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   
 				<div class="well">
 				<legend class="pullmenu">Director Details</legend>
 				<div class="row">
@@ -31,7 +31,7 @@
 					<div class="form-group">
 					    <label class="col-md-4">Name</label>
 					    <div class="col-md-12">
-						<input class="form-control input-sm" name="DirectorName" value="" type="text" placeholder="Director Name">
+						<input class="form-control input-sm" name="DirectorName" value="<?php if($mode=="add"){ }else{ echo $directorEdit[0]['DIRECTOR_NAME']; } ?>" type="text" placeholder="Director Name">
 					    </div>
 					</div>
 				    </div>
@@ -45,9 +45,9 @@
                                                 <div class="col-md-12" id="gallery">
                                                     <div class="ImageView AdjustPadding" style="padding-bottom:20px;"  >
                                                     
-                                                    <img src="<?php echo site_url('/application/assets/img/no-image.png');?>" class="col-md-12 previewimage gott2 img-responsive" id="dummy1" style="height: 185px; width: 200px;" >
-                                                    <input type="file" id="preview" name="DirectorImage" onchange="attachmentss(this);" class="col-md-12">
-                                                    
+                                                    <img src="<?php if($mode=="add"){echo site_url('/application/assets/img/no-image.png');}else{ echo $directorEdit[0]['DIRECTOR_IMAGE']; }?>"  class="col-md-12 previewimage gott2 img-responsive" id="dummy1" style="height: 185px; width: 200px;" >
+                                                    <input type="file" id="preview" value="<?php if($mode=="edit"){echo $directorEdit[0]['DIRECTOR_IMAGE']; } ?>" name="DirectorImage" onchange="attachmentss(this);" class="col-md-12">
+                                                    <input type="hidden" name="DirectorImage" value="<?php if($mode=="add"){}else{ echo $directorEdit[0]['DIRECTOR_IMAGE'];} ?>" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -58,6 +58,7 @@
 				                                        
 				<div class="pager form-group">
 				    <div class="col-md-7 control-label">
+					<input type="hidden" name="proceed" value="<?php if($mode=="add"){ echo 'add'; }else{ echo 'update'; } ?>" />
 					<button type="submit" class="btn btn-sm btn-success" name="submit_form" id="submit_but" value="Save">Save</button>
 					<button class="btn btn-sm btn-info" id="clear_data"  type="button">Reset</button>
 					<button class="btn btn-sm btn-danger" onclick="window.history.back();" type="button">Cancel</button>

@@ -240,7 +240,8 @@
 						</a>
 					</li>
 					<li class="has-sub">
-						<a href="javascript:;">
+						<a href="<?php echo site_url('MusicCtr/Songs_View'); ?>">
+						    <!--<b class="caret pull-right"></b>-->
 						    <i class="fa fa-music"></i> 
 						    <span>songs</span>
 						</a>
