@@ -36,6 +36,23 @@ class MusicMod extends CI_Model {
 	$this->db->insert("user",$data);
         redirect("MusicCtr/MusicUser_Add");
     }
+    function MusicUser_Update($id)
+    {
+        $data= array(
+	   
+	       "USERNAME"=>$this->input->post("UserName"),
+	       "PASSWORD"=>$this->input->post("UserPassword"),
+	       "EMAIL"=>$this->input->post("UserEmail")
+						 
+	);
+	$this->db->where("ID","$id");
+	return $this->db->update("user",$data);
+    }
+    function getMusicUser_Edit($id)
+    {
+	$sql="SELECT * FROM user WHERE ID = '$id'";
+	return $query = $this->db->query($sql)->result_array();
+    }
     function MusicUser_Delete($ID)
     {
         $this->db->where("ID",$ID);
@@ -304,7 +321,7 @@ class MusicMod extends CI_Model {
     {
 	if($_FILES['ActressImage']['name']=="")
 	{
-         $path1=$this->input->post('ActressImage');
+         $path1=$this->input->post('getActressImage');
 	}
 	else
 	{
@@ -364,7 +381,7 @@ class MusicMod extends CI_Model {
     {
 	if($_FILES['DirectorImage']['name']=="")
 	{
-         $path1=$this->input->post('DirectorImage');
+         $path1=$this->input->post('getDirectorImage');
 	}
 	else
 	{
@@ -424,7 +441,7 @@ class MusicMod extends CI_Model {
     {
 	if($_FILES['ProductionImage']['name']=="")
 	{
-         $path1=$this->input->post('ProductionImage');
+         $path1=$this->input->post('getProductionImage');
 	}
 	else
 	{
@@ -458,68 +475,66 @@ class MusicMod extends CI_Model {
 	$this->db->where("ID",$ID);
         $this->db->delete('production');
     }
-    function Album_View()
+    function Movie_View()
     {
-	$sql="SELECT * FROM album";
+	$sql="SELECT * FROM movie";
 	return   $query = $this->db->query($sql)->result_array();
     }
-    function Album_Add()
+    function Movie_Add()
     {
 	$config['upload_path'] ='application/uploads/';
 	$config['allowed_types'] = 'gif|jpg|png';
 	$this->load->library('upload', $config);
-	$this->upload->do_upload('AlbumImage');
+	$this->upload->do_upload('MovieImage');
 	$data =  $this->upload->data();
 	$path1=$data['file_name'];
 	$target_file =base_url().$config['upload_path'].$path1;
         $data= array(
 	   
-	       "ALBUM_NAME"=>$this->input->post("AlbumName"),
-	       "ALBUM_IMAGE"=>$target_file
+	       "MOVIE_NAME"=>$this->input->post("MovieName"),
+	       "MOVIE_IMAGE"=>$target_file
 						 
 	);
-	$this->db->insert("album",$data);
-        redirect("MusicCtr/Album_View");
+	$this->db->insert("movie",$data);
+        redirect("MusicCtr/Movie_View");
     }
-    function Album_Edit($id)
+    function Movie_Edit($id)
     {
-	//print_r($_POST);
-	//exit;
-	if($_FILES['AlbumImage']['name']=="")
+	if($_FILES['MovieImage']['name']=="")
 	{
-         $path1=$this->input->post('AlbumImage');
+         $path1=$this->input->post('getMovieImage');
 	}
 	else
 	{
 	    $config['upload_path'] ='application/uploads/';
 	    $config['allowed_types'] = 'gif|jpg|png';
 	    $this->load->library('upload', $config);
-	    $this->upload->do_upload('AlbumImage');
+	    $this->upload->do_upload('MovieImage');
 	    $data =  $this->upload->data();
 	    $path1=$data['file_name'];
 	    $target_file =base_url().$config['upload_path'].$path1;
 	}
         $data= array(
 	   
-	       "ALBUM_NAME"=>$this->input->post("AlbumName"),
-	       "ALBUM_IMAGE"=>$target_file
+	       "MOVIE_NAME"=>$this->input->post("MovieName"),
+	       "MOVIE_IMAGE"=>$target_file
 						 
 	);
 	$this->db->where("ID","$id");
-	return $this->db->update("album",$data);
+	return $this->db->update("movie",$data);
     }
-    function getAlbum_Edit($id)
+    function getMovie_Edit($id)
     {
     
-	$sql="SELECT * FROM album WHERE ID = '$id'";
+	$sql="SELECT * FROM movie WHERE ID = '$id'";
 	return $query = $this->db->query($sql)->result_array();
 	
     }
     
-    function Album_Delete($ID)
+    function Movie_Delete($ID)
     {
 	$this->db->where("ID",$ID);
-        $this->db->delete('album');
+        $this->db->delete('movie');
     }
     function Category_View()
     {
@@ -583,10 +598,19 @@ class MusicMod extends CI_Model {
 	$this->db->where("ID",$ID);
         $this->db->delete('language');
     }
-    
     function GetDirectorlist()
     {
 	$sql="SELECT * FROM director";
+	return $query = $this->db->query($sql)->result_array();
+    }
+    function GetLyricistlist()
+    {
+	$sql="SELECT * FROM lyricist";
+	return $query = $this->db->query($sql)->result_array();
+    }
+    function GetSingerlist()
+    {
+	$sql="SELECT * FROM singer";
 	return $query = $this->db->query($sql)->result_array();
     }
     function getMusicDirectorlist()
@@ -599,9 +623,9 @@ class MusicMod extends CI_Model {
 	$sql="SELECT * FROM production";
 	return $query = $this->db->query($sql)->result_array();
     }
-    function GetAlbumlist()
+    function GetMovielist()
     {
-	$sql="SELECT * FROM album";
+	$sql="SELECT * FROM movie";
 	return $query = $this->db->query($sql)->result_array();
     }
     function GetActresslist()
@@ -613,5 +637,39 @@ class MusicMod extends CI_Model {
     {
 	$sql="SELECT * FROM actor";
 	return $query = $this->db->query($sql)->result_array();
+    }
+    function GetCategorylist()
+    {
+	$sql="SELECT * FROM category";
+	return $query = $this->db->query($sql)->result_array();
+    }
+    function GetLanguagelist()
+    {
+	$sql="SELECT * FROM language";
+	return $query = $this->db->query($sql)->result_array();
+    }
+    function Songs_View()
+    {
+	$sql="SELECT * FROM song";
+	return   $query = $this->db->query($sql)->result_array();
+    }
+    function Songs_Add()
+    {
+        $data= array(
+	    "SONG_NAME"=>$this->input->post("SongName"),
+	    "MUSICDIRECTOR"=>$this->input->post("SongMusicDirector"),
+	    "LYRICIST"=>$this->input->post("SongLyricist"),
+	    "SINGER"=>$this->input->post("SongSinger"),
+	    "MOVIE"=>$this->input->post("SongMovie"),
+	    "ACTOR"=>$this->input->post("SongActor"),
+	    "ACTRESS"=>$this->input->post("SongActress"),
+	    "DIRECTOR"=>$this->input->post("SongDirector"),
+	    "PRODUCTION"=>$this->input->post("SongProduction"),
+	    "CATEGORY"=>$this->input->post("SongCategory"),
+	    "LANGUAGE"=>$this->input->post("SongLanguage"),
+	);
+	
+	$this->db->insert("song",$data);
+        redirect("MusicCtr/Songs_View");
     }
 }

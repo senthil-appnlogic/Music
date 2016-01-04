@@ -222,20 +222,20 @@
 						</a>
 					</li>
 					<li class="has-sub">
-						<a href="<?php echo site_url('MusicCtr/Album_View'); ?>">
+						<a href="<?php echo site_url('MusicCtr/Movie_View'); ?>">
 						    <i class="fa fa-video-camera"></i> 
-						    <span>Album</span>
+						    <span>Movie</span>
 						</a>
 					</li>
 					<li class="has-sub">
 						<a href="<?php echo site_url('MusicCtr/Category_View'); ?>">
-						    <i class="fa fa-video-camera"></i> 
+						    <i class="fa fa-sort-amount-asc"></i> 
 						    <span>Category</span>
 						</a>
 					</li>
 					<li class="has-sub">
 						<a href="<?php echo site_url('MusicCtr/Language_View'); ?>">
-						    <i class="fa fa-video-camera"></i> 
+						    <i class="fa fa-language"></i> 
 						    <span>Language</span>
 						</a>
 					</li>

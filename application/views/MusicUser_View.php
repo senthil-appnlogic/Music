@@ -29,7 +29,7 @@
                     </div>
                     <div class="panel-body">
                         <p>
-                            <a class="btn btn-primary btn-sm " href="<?php echo site_url('MusicCtr/MusicUser_Add'); ?>">
+                            <a class="btn btn-primary btn-sm " href="<?php echo site_url('MusicCtr/MusicUser/add'); ?>">
                                 <i class="fa fa-plus fa-1x"></i>
                                 <span class="f-s-14 f-w-500">Add </span>
                             </a>
@@ -48,7 +48,7 @@
                                     <tr>
                                         <td><?php echo $row['USERNAME']; ?></td>
                                         <td><?php echo $row['EMAIL']; ?></td>
-                                        <td><a href="<?php echo site_url()?>" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> </a>
+                                        <td><a href="<?php echo site_url('MusicCtr/MusicUser/edit'.$row['ID'])?>" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> </a>
                                         <a href="<?php echo site_url('MusicCtr/MusicUser_Delete/'.$row['ID']); ?>" class="btn btn-xs btn-danger" id="delete_box"><i class="fa  fa-trash-o"></i> </a>
                                         </td>
                                     </tr>

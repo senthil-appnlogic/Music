@@ -32,7 +32,7 @@
                     </div>
                     <div class="panel-body">
                         <p>
-                            <a class="btn btn-primary btn-sm " href="<?php echo site_url('MusicCtr/Songs_Add/add'); ?>">
+                            <a class="btn btn-primary btn-sm " href="<?php echo site_url('MusicCtr/Songs/add'); ?>">
                                 <i class="fa fa-plus fa-1x"></i>
                                 <span class="f-s-14 f-w-500">Add </span>
                             </a>
@@ -42,19 +42,23 @@
                                 <thead>
                                     <tr>
                                         <th>SONG_NAME</th>
-                                        <th>FILE_TYPE</th>
                                         <th>MUSICDIRECTOR</th>
 					<th>LYRICIST</th>
 					<th>SINGER</th>
 					<th>MOVIES</th>
 					<th>ACTOR</th>
-					<th>ACTRESS</th>
-					<th>DIRECTOR</th>
-					<th>PRODUCTION</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                
+                                <?php foreach ($SongsEdit as $row) { ?> 
+                                    <tr>
+                                        <td><?php echo $row['ACTOR_NAME']; ?></td>
+                                        <td><?php echo $row['ACTOR_IMAGE']; ?></td>
+                                        <td><a href="<?php echo site_url('MusicCtr/Actor/edit'.$row['ID'])?>" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i> </a>
+                                            <a href="<?php echo site_url('MusicCtr/Actor_Delete/'.$row['ID']); ?>" class="btn btn-xs btn-danger" id="delete_box"><i class="fa  fa-trash-o"></i> </a>
+                                        </td>
+                                    </tr>
+                                <?php }?>
                                 </tbody>
                             </table>
                         </div>
