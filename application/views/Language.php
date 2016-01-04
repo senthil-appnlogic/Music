@@ -2,11 +2,11 @@
 	    <!-- begin breadcrumb -->
 	    <ol class="breadcrumb pull-right">
 		<li><a href="javascript:;">Language</a></li>
-		<li class="active">Language Actor</li>
+		<li class="active"><?php if($mode=="add"){ echo 'Add Language Actor'; }else{ echo 'Edit Language Actor'; }?></li>
 	    </ol>
 	    <!-- end breadcrumb -->
 	    <!-- begin page-header -->
-	    <h1 class="page-header">Language<small> You may add Language details here...</small></h1>
+	    <h1 class="page-header">Language<?php if($mode=="add"){?><small><?php echo 'You may Add Language details here...';?></small><?php } else{?><small> <?php echo 'You may Edit Language details here...';?></small><?php }?></h1>
 	    <!-- end page-header -->
 	    <!-- begin row -->
 	    <div class="row">
@@ -20,7 +20,7 @@
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 			    </div>
-			    <h4 class="panel-title">Add Language</h4>
+			    <h4 class="panel-title"><?php if($mode=="add"){ echo 'Add Language'; }else{ echo 'Edit Language'; }?></h4>
 			</div>
 			<div class="panel-body">
 			    <form <?php if($mode=="add") { ?> action="<?php echo site_url('MusicCtr/Language/add');?>" <?php } else { ?> action="<?php echo site_url('MusicCtr/Language/edit'.$LanguageEdit[0]['ID']);?>" <?php } ?> class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   

@@ -2,11 +2,11 @@
 	    <!-- begin breadcrumb -->
 	    <ol class="breadcrumb pull-right">
 		<li><a href="javascript:;">Actor</a></li>
-		<li class="active">Add Actor</li>
+		<li class="active"><?php if($mode=="add"){ echo 'Add Actor'; }else{ echo 'Edit Actor'; }?></li>
 	    </ol>
 	    <!-- end breadcrumb -->
 	    <!-- begin page-header -->
-	    <h1 class="page-header">Actor<small> You may add Actor details here...</small></h1>
+	    <h1 class="page-header">Actor<?php if($mode=="add"){?><small><?php echo 'You may Add Actor details here...';?></small><?php } else{?><small> <?php echo 'You may Edit Actor details here...';?></small><?php }?></h1>
 	    <!-- end page-header -->
 	    <!-- begin row -->
 	    <div class="row">
@@ -20,7 +20,7 @@
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 			    </div>
-			    <h4 class="panel-title">Add Actor</h4>
+			    <h4 class="panel-title"><?php if($mode=="add"){ echo 'Add Actor'; }else{ echo 'Edit Actor'; }?></h4>
 			</div>
 			<div class="panel-body">
 			    <form <?php if($mode=="add") { ?> action="<?php echo site_url('MusicCtr/Actor/add');?>" <?php } else { ?> action="<?php echo site_url('MusicCtr/Actor/edit'.$ActorEdit[0]['ID']);?>" <?php } ?> class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   
@@ -37,7 +37,6 @@
 				    </div>
                                 </div>
                                 <div class="row">
-                                    
                                     <div class="col-md-4">
                                         <div class="col-md-12 ImageView AdjustPadding" style="padding-bottom:20px;"  >
                                         <label class="col-md-6">Image</label>
@@ -52,9 +51,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                
                                 </div>
-				                                        
 				<div class="pager form-group">
 				    <div class="col-md-7 control-label">
 					<input type="hidden" name="proceed" value="<?php if($mode=="add"){ echo 'add'; }else{ echo 'update'; } ?>" />

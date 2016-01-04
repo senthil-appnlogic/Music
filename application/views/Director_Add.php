@@ -2,11 +2,11 @@
 	    <!-- begin breadcrumb -->
 	    <ol class="breadcrumb pull-right">
 		<li><a href="javascript:;">Director</a></li>
-		<li class="active">Add Director</li>
+		<li class="active"><?php if($mode=="add"){ echo 'Add Director'; }else{ echo 'Edit Director'; }?></li>
 	    </ol>
 	    <!-- end breadcrumb -->
 	    <!-- begin page-header -->
-	    <h1 class="page-header">Director<small> You may add Director details here...</small></h1>
+	    <h1 class="page-header">Director<?php if($mode=="add"){?><small><?php echo 'You may Add Director details here...';?></small><?php } else{?><small> <?php echo 'You may Edit Director details here...';?></small><?php }?></h1>
 	    <!-- end page-header -->
 	    <!-- begin row -->
 	    <div class="row">
@@ -20,7 +20,7 @@
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 			    </div>
-			    <h4 class="panel-title">Add Director</h4>
+			    <h4 class="panel-title"><?php if($mode=="add"){ echo 'Add Director'; }else{ echo 'Edit Director'; }?></h4>
 			</div>
 			<div class="panel-body">
 			    <form <?php if($mode=="add") { ?> action="<?php echo site_url('MusicCtr/Director_Add/add');?>" <?php } else { ?> action="<?php echo site_url('MusicCtr/Director_Add/edit'.$directorEdit[0]['ID']);?>" <?php } ?> class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   

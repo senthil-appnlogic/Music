@@ -2,11 +2,11 @@
 	    <!-- begin breadcrumb -->
 	    <ol class="breadcrumb pull-right">
 		<li><a href="javascript:;">User</a></li>
-		<li class="active">Add User</li>
+		<li class="active"><?php if($mode=="add"){ echo 'Add User'; }else{ echo 'Edit User'; }?></li>
 	    </ol>
 	    <!-- end breadcrumb -->
 	    <!-- begin page-header -->
-	    <h1 class="page-header">User<small> You may add Music Director details here...</small></h1>
+	    <h1 class="page-header">User<?php if($mode=="add"){?><small><?php echo 'You may Add Director details here...';?></small><?php } else{?><small> <?php echo 'You may Edit Director details here...';?></small><?php }?></h1>
 	    <!-- end page-header -->
 	    <!-- begin row -->
 	    <div class="row">
@@ -20,7 +20,7 @@
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 			    </div>
-			    <h4 class="panel-title">Add User</h4>
+			    <h4 class="panel-title"><?php if($mode=="add"){ echo 'Add User'; }else{ echo 'Edit User'; }?></h4>
 			</div>
 			<div class="panel-body">
 			    <form action="<?php echo base_url('MusicCtr/MusicUser_Add'); ?>" class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   
