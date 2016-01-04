@@ -23,7 +23,7 @@
 			    <h4 class="panel-title"><?php if($mode=="add"){ echo 'Add User'; }else{ echo 'Edit User'; }?></h4>
 			</div>
 			<div class="panel-body">
-			    <form action="<?php echo base_url('MusicCtr/MusicUser_Add'); ?>" class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   
+			    <form <?php if($mode=="add") { ?> action="<?php echo site_url('MusicCtr/MusicUser/add');?>" <?php } else { ?> action="<?php echo site_url('MusicCtr/MusicUser/edit'.$MusicUserEdit[0]['ID']);?>" <?php } ?> class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   
 				<div class="well">
 				<legend class="pullmenu">User Details</legend>
 				<div class="row">
@@ -31,7 +31,7 @@
 					<div class="form-group">
 					    <label class="col-md-4">Name</label>
 					    <div class="col-md-12">
-						<input class="form-control input-sm" name="UserName" value="" type="text" placeholder="User Name">
+						<input class="form-control input-sm" name="UserName" value="<?php if($mode=="add"){ }else{ echo $MusicUserEdit[0]['USERNAME']; } ?>" type="text" placeholder="User Name">
 					    </div>
 					</div>
 				    </div>
@@ -39,7 +39,7 @@
 					<div class="form-group">
 					    <label class="col-md-4">Email</label>
 					    <div class="col-md-12">
-						<input class="form-control input-sm" name="UserEmail" value="" type="Email" placeholder="User Email">
+						<input class="form-control input-sm" name="UserEmail" value="<?php if($mode=="add"){ }else{ echo $MusicUserEdit[0]['EMAIL']; } ?>" type="Email" placeholder="User Email">
 					    </div>
 					</div>
 				    </div>
@@ -47,7 +47,7 @@
 					<div class="form-group">
 					    <label class="col-md-4">Password</label>
 					    <div class="col-md-12">
-						<input class="form-control input-sm" name="UserPassword" value="" type="text" placeholder="User Password">
+						<input class="form-control input-sm" name="UserPassword" value="<?php if($mode=="add"){ }else{ echo $MusicUserEdit[0]['PASSWORD']; } ?>" type="text" placeholder="User Password">
 					    </div>
 					</div>
 				    </div>
@@ -55,6 +55,7 @@
 				                                        
 				<div class="pager form-group">
 				    <div class="col-md-7 control-label">
+					<input type="hidden" name="proceed" value="<?php if($mode=="add"){ echo 'add'; }else{ echo 'update'; } ?>" />
 					<button type="submit" class="btn btn-sm btn-success" name="submit_form" id="submit_but" value="Save">Save</button>
 					<button class="btn btn-sm btn-info" id="clear_data"  type="button">Reset</button>
 					<button class="btn btn-sm btn-danger" onclick="window.history.back();" type="button">Cancel</button>

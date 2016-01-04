@@ -1,12 +1,12 @@
 	<div id="content" class="content">
 	    <!-- begin breadcrumb -->
 	    <ol class="breadcrumb pull-right">
-		<li><a href="javascript:;">Director</a></li>
-		<li class="active"><?php if($mode=="add"){ echo 'Add Director'; }else{ echo 'Edit Director'; }?></li>
+		<li><a href="javascript:;">Movie</a></li>
+		<li class="active"><?php if($mode=="add"){ echo 'Add Movie'; }else{ echo 'Add Movie'; }?></li>
 	    </ol>
 	    <!-- end breadcrumb -->
 	    <!-- begin page-header -->
-	    <h1 class="page-header">Director<?php if($mode=="add"){?><small><?php echo 'You may Add Director details here...';?></small><?php } else{?><small> <?php echo 'You may Edit Director details here...';?></small><?php }?></h1>
+	    <h1 class="page-header">Movie<?php if($mode=="add"){?><small><?php echo 'You may Add Movie details here...';?></small><?php } else{?><small> <?php echo 'You may Edit Movie details here...';?></small><?php }?></h1>
 	    <!-- end page-header -->
 	    <!-- begin row -->
 	    <div class="row">
@@ -20,18 +20,18 @@
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 			    </div>
-			    <h4 class="panel-title"><?php if($mode=="add"){ echo 'Add Director'; }else{ echo 'Edit Director'; }?></h4>
+			    <h4 class="panel-title"><?php if($mode=="add"){ echo 'Add Movie'; }else{ echo 'Edit Movie'; }?></h4>
 			</div>
 			<div class="panel-body">
-			    <form <?php if($mode=="add") { ?> action="<?php echo site_url('MusicCtr/Director_Add/add');?>" <?php } else { ?> action="<?php echo site_url('MusicCtr/Director_Add/edit'.$directorEdit[0]['ID']);?>" <?php } ?> class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   
+			    <form <?php if($mode=="add") { ?> action="<?php echo site_url('MusicCtr/Movie/add');?>" <?php } else { ?> action="<?php echo site_url('MusicCtr/Movie/edit'.$MovieEdit[0]['ID']);?>" <?php } ?> class="form-horizontal" id="form_validation" method="post" name="form_validation" enctype="multipart/form-data">                   
 				<div class="well">
-				<legend class="pullmenu">Director Details</legend>
+				<legend class="pullmenu">Movie Details</legend>
 				<div class="row">
 				    <div class="col-md-4">
 					<div class="form-group">
 					    <label class="col-md-4">Name</label>
 					    <div class="col-md-12">
-						<input class="form-control input-sm" name="DirectorName" value="<?php if($mode=="add"){ }else{ echo $directorEdit[0]['DIRECTOR_NAME']; } ?>" type="text" placeholder="Director Name">
+						<input class="form-control input-sm" name="MovieName" value="<?php if($mode=="add"){ }else{ echo $MovieEdit[0]['MOVIE_NAME']; } ?>" type="text" placeholder="Movie Name">
 					    </div>
 					</div>
 				    </div>
@@ -39,15 +39,15 @@
                                 <div class="row">
                                     
                                     <div class="col-md-4">
-                                        <div class="col-md-12 ImageView AdjustPadding" style="padding-bottom:20px;"  >
+                                        <div class="col-md-12 ImageView AdjustPadding" style="padding-bottom:20px;">
                                         <label class="col-md-6">Image</label>
                                             <div class="form-group">
                                                 <div class="col-md-12" id="gallery">
                                                     <div class="ImageView AdjustPadding" style="padding-bottom:20px;"  >
                                                     
-                                                    <img src="<?php if($mode=="add"){echo site_url('/application/assets/img/no-image.png');}else{ echo $directorEdit[0]['DIRECTOR_IMAGE']; }?>"  class="col-md-12 previewimage gott2 img-responsive" id="dummy1" style="height: 185px; width: 200px;" >
-                                                    <input type="file" id="preview" value="<?php if($mode=="edit"){echo $directorEdit[0]['DIRECTOR_IMAGE']; } ?>" name="DirectorImage" onchange="attachmentss(this);" class="col-md-12">
-                                                    <input type="hidden" name="DirectorImage" value="<?php if($mode=="add"){}else{ echo $directorEdit[0]['DIRECTOR_IMAGE'];} ?>" >
+                                                    <img src="<?php if($mode=="add"){echo site_url('/application/assets/img/no-image.png');}else{ echo $MovieEdit[0]['MOVIE_IMAGE']; }?>" class="col-md-12 previewimage gott2 img-responsive" id="dummy1" style="height: 185px; width: 200px;" >
+                                                    <input type="file" id="preview" name="MovieImage" value="<?php if($mode=="edit"){echo $MovieEdit[0]['MOVIE_IMAGE']; } ?>" onchange="attachmentss(this);" class="col-md-12">
+                                                    <input type="hidden" name="getMovieImage" value="<?php if($mode=="add"){}else{ echo $MovieEdit[0]['MOVIE_IMAGE'];} ?>" >
                                                     </div>
                                                 </div>
                                             </div>
