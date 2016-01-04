@@ -515,6 +515,7 @@ class MusicMod extends CI_Model {
 	return $query = $this->db->query($sql)->result_array();
 	
     }
+    
     function Album_Delete($ID)
     {
 	$this->db->where("ID",$ID);
@@ -583,4 +584,34 @@ class MusicMod extends CI_Model {
         $this->db->delete('language');
     }
     
+    function GetDirectorlist()
+    {
+	$sql="SELECT * FROM director";
+	return $query = $this->db->query($sql)->result_array();
+    }
+    function getMusicDirectorlist()
+    {
+	$sql="SELECT * FROM musicdirector";
+	return $query = $this->db->query($sql)->result_array();
+    }
+    function getProductionlist()
+    {
+	$sql="SELECT * FROM production";
+	return $query = $this->db->query($sql)->result_array();
+    }
+    function GetAlbumlist()
+    {
+	$sql="SELECT * FROM album";
+	return $query = $this->db->query($sql)->result_array();
+    }
+    function GetActresslist()
+    {
+	$sql="SELECT * FROM actress";
+	return $query = $this->db->query($sql)->result_array();
+    }
+    function GetActorlist()
+    {
+	$sql="SELECT * FROM actor";
+	return $query = $this->db->query($sql)->result_array();
+    }
 }

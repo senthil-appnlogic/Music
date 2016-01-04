@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MusicCtr extends CI_Controller {
-	function SedarCtr()
+	function MusicCtr()
 	{
 	    parent::__construct();
 	    $this->load->model('MusicMod');
@@ -15,7 +15,7 @@ class MusicCtr extends CI_Controller {
 	    $session_data = $this->session->userdata('USERNAME');
 	    if ($this->input->post('proceed')=='yes')
 	    {
-		$this->load->model('MusicMod');
+		//$this->load->model('MusicMod');
 		$result= $this->MusicMod->MusicAuthentication();
 		 
 		if($result == NULL)
@@ -43,14 +43,14 @@ class MusicCtr extends CI_Controller {
 	}
 	function MusicUser_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicuser"]=$this->MusicMod->MusicUser_View();
 	    $this->load->view('header');
 	    $this->load->view('MusicUser_View',$data);
 	}
 	function MusicUser_Add()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if(isset ($_POST["submit_form"]))
 	    {
 		$this->MusicMod->MusicUser_Add();
@@ -66,7 +66,7 @@ class MusicCtr extends CI_Controller {
 	}
 	function MusicDirector_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicdir"]=$this->MusicMod->MusicDirector_View();
 	    $this->load->view('header');
 	    $this->load->view('MusicDirector_View',$data);
@@ -74,7 +74,7 @@ class MusicCtr extends CI_Controller {
 	function MusicDirector($mode)
 	{
 	    
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->MusicDirector_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -93,20 +93,20 @@ class MusicCtr extends CI_Controller {
 	}
 	function MusicDirector_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->MusicDirector_Delete($ID);
 	    redirect("MusicCtr/MusicDirector_View");
 	}
 	function Singer_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicSinger"]=$this->MusicMod->Singer_View();
 	    $this->load->view('header');
 	    $this->load->view('Singer_View',$data);
 	}
 	function Singer_Add($mode)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->Singer_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -125,20 +125,20 @@ class MusicCtr extends CI_Controller {
 	}
 	function Singer_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->Singer_Delete($ID);
 	    redirect("MusicCtr/Singer_View");
 	}
 	function Lyricist_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicLyricist"]=$this->MusicMod->Lyricist_View();
 	    $this->load->view('header');
 	    $this->load->view('Lyricist_View',$data);
 	}
 	function Lyricist($mode)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->Lyricist_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -157,20 +157,20 @@ class MusicCtr extends CI_Controller {
 	}
 	function Lyricist_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->Lyricist_Delete($ID);
 	    redirect("MusicCtr/Lyricist_View");
 	}
 	function Actor_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicActor"]=$this->MusicMod->Actor_View();
 	    $this->load->view('header');
 	    $this->load->view('Actor_View',$data);
 	}
 	function Actor($mode)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->Actor_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -189,21 +189,21 @@ class MusicCtr extends CI_Controller {
 	}
 	function Actor_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->Actor_Delete($ID);
 	    redirect("MusicCtr/Actor_View");
 	}
 	
 	function Category_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicCategory"]=$this->MusicMod->Category_View();
 	    $this->load->view('header');
 	    $this->load->view('Category_View',$data);
 	}
 	function Category($mode)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->Category_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -222,20 +222,20 @@ class MusicCtr extends CI_Controller {
 	}
 	function Category_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->Category_Delete($ID);
 	    redirect("MusicCtr/Category_View");
 	}
 	function Language_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicLanguage"]=$this->MusicMod->Language_View();
 	    $this->load->view('header');
 	    $this->load->view('Language_View',$data);
 	}
 	function Language($mode)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->Language_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -255,13 +255,13 @@ class MusicCtr extends CI_Controller {
 	}
 	function Language_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->Language_Delete($ID);
 	    redirect("MusicCtr/Language_View");
 	}
 	function Actress_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicActress"]=$this->MusicMod->Actress_View();
 	    $this->load->view('header');
 	    $this->load->view('Actress_View',$data);
@@ -269,7 +269,7 @@ class MusicCtr extends CI_Controller {
 	
 	function Actress_Add($mode)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->Actress_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -288,20 +288,20 @@ class MusicCtr extends CI_Controller {
 	}
 	function Actress_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->Actress_Delete($ID);
 	    redirect("MusicCtr/Actress_View");
 	}
 	function Director_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicDirector"]=$this->MusicMod->Director_View();
 	    $this->load->view('header');
 	    $this->load->view('Director_View',$data);
 	}
 	function Director_Add($mode)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->Director_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -320,20 +320,20 @@ class MusicCtr extends CI_Controller {
 	}
 	function Director_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->Director_Delete($ID);
 	    redirect("MusicCtr/Director_View");
 	}
 	function Production_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicProduction"]=$this->MusicMod->Production_View();
 	    $this->load->view('header');
 	    $this->load->view('Production_View',$data);
 	}
 	function Production_Add($mode)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->Production_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -352,20 +352,20 @@ class MusicCtr extends CI_Controller {
 	}
 	function Production_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->Production_Delete($ID);
 	    redirect("MusicCtr/Production_View");
 	}
 	function Album_View()
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $data["musicAlbum"]=$this->MusicMod->Album_View();
 	    $this->load->view('header');
 	    $this->load->view('Album_View',$data);
 	}
 	function Album_Add($mode)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    if($this->input->post('proceed')=="add"){
 		$this->MusicMod->Album_Add();
 	    }elseif($this->input->post('proceed')=="update"){
@@ -384,7 +384,7 @@ class MusicCtr extends CI_Controller {
 	}
 	function Album_Delete($ID)
 	{
-	    $this->load->model('MusicMod');
+	    //$this->load->model('MusicMod');
 	    $this->MusicMod->Album_Delete($ID);
 	    redirect("MusicCtr/Album_View");
 	}
@@ -393,9 +393,15 @@ class MusicCtr extends CI_Controller {
 	    $this->load->view('header');
 	    $this->load->view("Songs_View");
 	}
-	function Songs_Add()
-	{
+	function Songs_Add(){
+	    $data['director'] = $this->MusicMod->GetDirectorlist();
+	    $data['musicdirector'] = $this->MusicMod->getMusicDirectorlist();
+	    $data['production'] = $this->MusicMod->getProductionlist();
+	    $data['album'] = $this->MusicMod->GetAlbumlist();
+	    $data['actress'] = $this->MusicMod->GetActresslist();
+	    $data['actor'] = $this->MusicMod->GetActorlist();
+	    $data['album'] = $this->MusicMod->GetAlbumlist();
 	    $this->load->view('header');
-	    $this->load->view("Songs_Add");
+	    $this->load->view("Songs_Add",$data);
 	}
 }
