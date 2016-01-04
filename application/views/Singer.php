@@ -39,9 +39,15 @@
 					    </div>
 					</div>
 				    </div>
+				    <div class="col-md-8">
+					<label class="col-md-4">Active?</label>
+					    <div class="col-md-12">
+						<input type="checkbox" name="check">
+						<input name="active_yn" id="active_yn" type="hidden" value="">
+					    </div>
+				    </div>
                                 </div>
                                 <div class="row">
-                                    
                                     <div class="col-md-4">
                                         <div class="col-md-12 ImageView AdjustPadding" style="padding-bottom:20px;"  >
                                         <label class="col-md-6">Image</label>
